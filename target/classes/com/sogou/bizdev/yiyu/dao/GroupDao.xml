@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sogou.bizdev.yiyu.dao.GroupDao">
+
+    <resultMap id="groupMap" type="com.sogou.bizdev.yiyu.bean.Group">
+        <id column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="plan_name" property="planName" jdbcType="VARCHAR"/>
+        <result column="budget" property="budget" jdbcType="INTEGER"/>
+        <collection property="channels" ofType="com.sogou.bizdev.yiyu.bean.GroupChannel">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="groupId" column="group_id" jdbcType="INTEGER"/>
+            <result property="channelId" column="channel_id" jdbcType="INTEGER"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insertGroup" parameterType="com.sogou.bizdev.yiyu.bean.Group">
+        INSERT INTO `t_group` (`group_id`, `group_name`, `plan_id`, `if_pause`, `create_date`, `change_date`)
+        VALUES (#{groupId}, #{groupName}, #{planId}, 0, NOW(), NOW());
+        INSERT INTO `t_plan` (`plan_id`, `plan_name`, `budget`, `if_pause`, `create_date`, `change_date`)
+        VALUES (#{planId}, #{planName}, #{budget}, 0, NOW(), NOW());
+    </insert>
+
+    <update id="updateGroupAndPlan" parameterType="com.sogou.bizdev.yiyu.bean.Group">
+        UPDATE `t_group`
+        SET group_name = #{groupName}, change_date = NOW()
+        WHERE group_id = #{groupId};
+
+        UPDATE `t_plan`
+        SET budget = #{budget}, change_date = NOW()
+        WHERE plan_id = #{planId};
+    </update>
+
+    <insert id="insertGroupChannel" parameterType="com.sogou.bizdev.yiyu.bean.Group">
+        INSERT INTO `t_group_channel` (`id`, `group_id`, `channel_id`, `price`)
+        VALUES
+        <foreach collection="channels" index="index" item="item" separator=",">
+            (#{item.id}, #{item.grId}, #{item.channelId}, #{item.price})
+        </foreach>
+    </insert>
+
+    <select id="getAllGroups" resultMap="groupMap">
+        SELECT
+            g.`group_id`,
+            g.`group_name`,
+            p.`plan_name`,
+            p.`budget`
+        FROM t_group g
+            JOIN t_plan p ON p.`plan_id` = g.`plan_id`
+    </select>
+
+    <select id="getChannels" resultType="com.sogou.bizdev.yiyu.bean.GroupChannel">
+        SELECT *
+        FROM t_group_channel
+        WHERE `group_id` = #{groupId}
+    </select>
+
+    <select id="getGroupByNameAndChannel" resultType="com.sogou.bizdev.yiyu.bean.Group">
+        SELECT
+            g.`group_id` groupId,
+            g.`group_name` groupName,
+            p.`plan_name` planName,
+            p.`budget` budget,
+            c.`channel_id` channelId,
+            c.`price` price
+        FROM t_group g
+            JOIN t_group_channel c ON c.`group_id` = g.`group_id`
+            JOIN t_plan p ON p.`plan_id` = g.`plan_id`
+        WHERE g.`group_name` = #{groupName} AND c.`channel_id` = #{channelId}
+
+    </select>
+
+</mapper>

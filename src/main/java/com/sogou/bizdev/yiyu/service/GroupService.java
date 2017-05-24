@@ -45,4 +45,6 @@ public class GroupService {
     public Group getGroupByNameAndChannel(String groupName, Integer channelId) {
         return groupDao.getGroupByNameAndChannel(groupName, channelId);
     }
+
+
 }
