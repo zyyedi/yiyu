@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yiyu:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="yiyu-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="yiyu:war exploded" />
+    </root>
+  </artifact>
+</component>

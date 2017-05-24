@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="practice@zhangyiyu">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="activiti">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="adstar"/>
+    <schema id="4" parent="1" name="bastat"/>
+    <schema id="5" parent="1" name="beauty"/>
+    <schema id="6" parent="1" name="beauty_0701"/>
+    <schema id="7" parent="1" name="bizwork_task"/>
+    <schema id="8" parent="1" name="brandbid"/>
+    <schema id="9" parent="1" name="brandlog"/>
+    <schema id="10" parent="1" name="brandstart"/>
+    <schema id="11" parent="1" name="brandstart_ay"/>
+    <schema id="12" parent="1" name="brandstart_lqc"/>
+    <schema id="13" parent="1" name="brandstart_lx"/>
+    <schema id="14" parent="1" name="cm"/>
+    <schema id="15" parent="1" name="cm_z"/>
+    <schema id="16" parent="1" name="conan"/>
+    <schema id="17" parent="1" name="crm_opt"/>
+    <schema id="18" parent="1" name="cugbdemo"/>
+    <schema id="19" parent="1" name="dbamobile"/>
+    <schema id="20" parent="1" name="dbmon"/>
+    <schema id="21" parent="1" name="db_activiti"/>
+    <schema id="22" parent="1" name="emer"/>
+    <schema id="23" parent="1" name="galaxy"/>
+    <schema id="24" parent="1" name="galaxywireless"/>
+    <schema id="25" parent="1" name="galaxy_report"/>
+    <schema id="26" parent="1" name="galaxy_shadow"/>
+    <schema id="27" parent="1" name="galaxy_stat"/>
+    <schema id="28" parent="1" name="information_schema"/>
+    <schema id="29" parent="1" name="inputzone"/>
+    <schema id="30" parent="1" name="inputzone_ay"/>
+    <schema id="31" parent="1" name="liquancai"/>
+    <schema id="32" parent="1" name="mail_test"/>
+    <schema id="33" parent="1" name="mars"/>
+    <schema id="34" parent="1" name="marsdb"/>
+    <schema id="35" parent="1" name="mars_task"/>
+    <schema id="36" parent="1" name="mysql"/>
+    <schema id="37" parent="1" name="percona"/>
+    <schema id="38" parent="1" name="performance_schema"/>
+    <schema id="39" parent="1" name="qaplatform"/>
+    <schema id="40" parent="1" name="rap_db"/>
+    <schema id="41" parent="1" name="shangyan"/>
+    <schema id="42" parent="1" name="sogou_gaia"/>
+    <schema id="43" parent="1" name="superzone"/>
+    <schema id="44" parent="1" name="superzone_trunk"/>
+    <schema id="45" parent="1" name="test"/>
+    <schema id="46" parent="1" name="test_test"/>
+    <schema id="47" parent="1" name="yunguan_mobile"/>
+    <schema id="48" parent="1" name="yunguan_mobile_stat"/>
+    <schema id="49" parent="1" name="zhangyiyu">
+      <Visible>1</Visible>
+    </schema>
+    <table id="50" parent="49" name="t_group">
+      <Comment>推广组表</Comment>
+    </table>
+    <table id="51" parent="49" name="t_group_channel"/>
+    <table id="52" parent="49" name="t_plan"/>
+    <column id="53" parent="50" name="group_id">
+      <Position>1</Position>
+      <Comment>推广组id</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="54" parent="50" name="group_name">
+      <Position>2</Position>
+      <Comment>推广组名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="50" name="plan_id">
+      <Position>3</Position>
+      <Comment>推广计划id</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="50" name="if_pause">
+      <Position>4</Position>
+      <Comment>状态 0:启动 1:暂停</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="57" parent="50" name="create_date">
+      <Position>5</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0000-00-00 00:00:00&apos;</DefaultExpression>
+    </column>
+    <column id="58" parent="50" name="change_date">
+      <Position>6</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <index id="59" parent="50" name="unique_group_name">
+      <ColNames>group_name
+plan_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="60" parent="50" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>group_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="61" parent="50" name="unique_group_name">
+      <ColNames>group_name
+plan_id</ColNames>
+      <UnderlyingIndexName>unique_group_name</UnderlyingIndexName>
+    </key>
+    <column id="62" parent="51" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="63" parent="51" name="group_id">
+      <Position>2</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="51" name="channel_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="51" name="price">
+      <Position>4</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="66" parent="51" name="uniqe_group_channel">
+      <ColNames>group_id
+channel_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="67" parent="51" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="68" parent="51" name="uniqe_group_channel">
+      <ColNames>group_id
+channel_id</ColNames>
+      <UnderlyingIndexName>uniqe_group_channel</UnderlyingIndexName>
+    </key>
+    <column id="69" parent="52" name="plan_id">
+      <Position>1</Position>
+      <Comment>推广计划id</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="70" parent="52" name="plan_name">
+      <Position>2</Position>
+      <Comment>计划名称</Comment>
+      <DataType>varchar(36)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="52" name="budget">
+      <Position>3</Position>
+      <Comment>预算，单位元。-1未设置</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;-1&apos;</DefaultExpression>
+    </column>
+    <column id="72" parent="52" name="if_pause">
+      <Position>4</Position>
+      <Comment>状态 0:启动 1:暂停</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="73" parent="52" name="create_date">
+      <Position>5</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0000-00-00 00:00:00&apos;</DefaultExpression>
+    </column>
+    <column id="74" parent="52" name="change_date">
+      <Position>6</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <index id="75" parent="52" name="unique_act_plan">
+      <ColNames>plan_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="76" parent="52" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>plan_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="77" parent="52" name="unique_act_plan">
+      <ColNames>plan_name</ColNames>
+      <UnderlyingIndexName>unique_act_plan</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
