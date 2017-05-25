@@ -11,8 +11,7 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     private static final long serialVersionUID = -4955523355334134099L;
-
-    private List<T> list = new ArrayList<T>();
+    private List<T> list = new ArrayList<T>();      //列表
     private Integer numOfLines = 0;
     private Integer pages = 0;
 

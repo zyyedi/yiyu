@@ -23,4 +23,5 @@ public interface GroupDao {
 
     public Group getGroupByNameAndChannel(@Param("groupName") String groupName, @Param("channelId") Integer channelId);
 
+    public Integer groupsCount();
 }

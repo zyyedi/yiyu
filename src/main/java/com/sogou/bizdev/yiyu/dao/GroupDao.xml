@@ -73,4 +73,8 @@
 
     </select>
 
+    <select id="groupsCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM `t_group`;
+    </select>
+
 </mapper>
