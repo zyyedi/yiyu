@@ -33,31 +33,21 @@ public class GroupService {
         groupDao.insertGroupChannel(group);
     }
 
-    public List<Group> getAllGroups() {
-        List<Group> groups = groupDao.getAllGroups();
-        for (Group group : groups) {
-            List<GroupChannel> channels = groupDao.getChannels(group.getGroupId());
-            group.setChannels(channels);
-        }
-        if (CollectionUtils.isEmpty(groups)) {
-            groups = Collections.emptyList();
-        }
-        return groups;
-    }
 
-//
     public Group getGroupByNameAndChannel(String groupName, Integer channelId) {
         return groupDao.getGroupByNameAndChannel(groupName, channelId);
     }
 
-//    分页查询所有的 Group
+    //    分页查询所有的 Group
     public PageResult<Group> pagingResult(PageInfo info) throws BizException {
         PageResult<Group> result = new PageResult<Group>();
 
         Integer totalNumber = groupDao.groupsCount();
         result.setNumOfLines(totalNumber);
         result.setPage(info.getPageSize(), totalNumber);
-
+        if (totalNumber > 0 && info.getPageNo() <= totalNumber) {
+            result.setList(groupDao.getAllGroups(info));
+        }
         return result;
     }
 

@@ -1,6 +1,8 @@
 package com.sogou.bizdev.yiyu.dao;
 
 import com.sogou.bizdev.yiyu.bean.GroupChannel;
+import com.sogou.bizdev.yiyu.paging.PageInfo;
+import javafx.scene.control.Pagination;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +21,7 @@ public interface GroupDao {
 
     public List<GroupChannel> getChannels(Integer groupId);
 
-    public List<Group> getAllGroups();
+    public List<Group> getAllGroups(PageInfo info);
 
     public Group getGroupByNameAndChannel(@Param("groupName") String groupName, @Param("channelId") Integer channelId);
 

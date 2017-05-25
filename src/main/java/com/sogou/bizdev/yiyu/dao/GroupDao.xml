@@ -42,14 +42,19 @@
         </foreach>
     </insert>
 
-    <select id="getAllGroups" resultMap="groupMap">
+    <select id="getAllGroups" resultMap="groupMap"
+            parameterType="com.sogou.bizdev.yiyu.paging.PageInfo">
         SELECT
             g.`group_id`,
             g.`group_name`,
             p.`plan_name`,
-            p.`budget`
+            p.`budget`,
+            c.`channel_id`,
+            c.`price`
         FROM t_group g
             JOIN t_plan p ON p.`plan_id` = g.`plan_id`
+            JOIN t_group_channel c ON c.`group_id` = g.`group_id`
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <select id="getChannels" resultType="com.sogou.bizdev.yiyu.bean.GroupChannel">
@@ -60,12 +65,12 @@
 
     <select id="getGroupByNameAndChannel" resultType="com.sogou.bizdev.yiyu.bean.Group">
         SELECT
-            g.`group_id` groupId,
+            g.`group_id`   groupId,
             g.`group_name` groupName,
-            p.`plan_name` planName,
-            p.`budget` budget,
+            p.`plan_name`  planName,
+            p.`budget`     budget,
             c.`channel_id` channelId,
-            c.`price` price
+            c.`price`      price
         FROM t_group g
             JOIN t_group_channel c ON c.`group_id` = g.`group_id`
             JOIN t_plan p ON p.`plan_id` = g.`plan_id`
@@ -74,7 +79,8 @@
     </select>
 
     <select id="groupsCount" resultType="java.lang.Integer">
-        SELECT count(*) FROM `t_group`;
+        SELECT count(*)
+        FROM `t_group`;
     </select>
 
 </mapper>
