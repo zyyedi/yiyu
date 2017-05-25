@@ -39,13 +39,13 @@ public class GroupController {
         return result;
     }
 
-    @RequestMapping(value = "/groups")
+    @RequestMapping(value = "/getgroups")
     @ResponseBody
     private Result getAllGroups() {
         Result result = new Result();
         List<Group> groups = groupService.getAllGroups();
         if (groups.isEmpty()) {
-            result.setError(ErrorEnum.PARAM_ERROR);
+            result.setError(ErrorEnum.PARAM_NULL);
             return result;
         }
         result.setData(groups);
