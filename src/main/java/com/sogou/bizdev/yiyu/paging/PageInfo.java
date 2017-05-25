@@ -12,7 +12,7 @@ public class PageInfo implements Serializable {
     private static final long serialVersionUID = 7546554083425189473L;
     private Integer pageSize;
     private Integer pageNo;
-    private Integer offSet; //分页初始值
+    private Integer offset; //分页初始值
 
     public PageInfo() {
     }
@@ -38,7 +38,7 @@ public class PageInfo implements Serializable {
         this.pageNo = pageNo;
     }
 
-    public Integer getOffSet() {
+    public Integer getOffset() {
         return (pageNo - 1) * pageSize;
     }
 }

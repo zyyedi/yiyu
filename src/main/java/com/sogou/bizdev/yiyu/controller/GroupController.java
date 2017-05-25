@@ -42,7 +42,7 @@ public class GroupController {
         return result;
     }
 
-    @RequestMapping(value = "/getgroups")
+    @RequestMapping(value = "/getgroups.do")
     @ResponseBody
     private Result getAllGroups(Integer pageSize, Integer pageNum) {
         Result result = new Result();
