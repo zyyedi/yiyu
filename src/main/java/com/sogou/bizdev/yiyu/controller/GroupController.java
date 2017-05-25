@@ -1,5 +1,8 @@
 package com.sogou.bizdev.yiyu.controller;
 
+import com.sogou.bizdev.yiyu.exception.BizException;
+import com.sogou.bizdev.yiyu.paging.PageInfo;
+import com.sogou.bizdev.yiyu.paging.PageResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +44,15 @@ public class GroupController {
 
     @RequestMapping(value = "/getgroups")
     @ResponseBody
-    private Result getAllGroups() {
+    private Result getAllGroups(Integer pageSize, Integer pageNum) {
         Result result = new Result();
-        List<Group> groups = groupService.getAllGroups();
-        if (groups.isEmpty()) {
-            result.setError(ErrorEnum.PARAM_NULL);
-            return result;
+        PageInfo info = new PageInfo(pageSize, pageNum);
+        try {
+            PageResult<Group> groupPageResult = groupService.pagingResult(info);
+            result.setData(groupPageResult);
+        } catch (BizException e) {
+            e.printStackTrace();
         }
-        result.setData(groups);
         return result;
     }
 }
