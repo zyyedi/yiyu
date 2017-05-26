@@ -1,7 +1,6 @@
 package com.sogou.bizdev.yiyu.controller;
 
-import com.sogou.bizdev.yiyu.exception.BizException;
-import com.sogou.bizdev.yiyu.exception.ErrorEnum;
+import com.sogou.bizdev.yiyu.exception.*;
 import com.sogou.bizdev.yiyu.paging.PageInfo;
 import com.sogou.bizdev.yiyu.paging.PageResult;
 import org.apache.commons.lang.StringUtils;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sogou.bizdev.yiyu.bean.Group;
 
 import com.sogou.bizdev.yiyu.service.GroupService;
-import com.sogou.bizdev.yiyu.exception.Result;
 
 
 @Controller
@@ -42,10 +40,15 @@ public class GroupController {
         Result result = new Result();
         PageInfo info = new PageInfo(pageSize, pageNum);
         try {
+            result = UnitValidator.validatorForPageInfo(info);
+            if (!result.isSuccess()) {
+                return result;
+            }
             PageResult<Group> groupPageResult = groupService.pagingResult(info);
             result.setData(groupPageResult);
         } catch (BizException e) {
             e.printStackTrace();
+            ResultUtil.addEnumError(result, BizErrorEnum.SYSTEM_ERROR);
         }
         return result;
     }

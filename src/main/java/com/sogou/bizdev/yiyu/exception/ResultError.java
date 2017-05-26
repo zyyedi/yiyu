@@ -7,7 +7,8 @@ public class ResultError {
     private int code;  //error code, 用于 error enum 来指示错误
     private String message;
 
-    public ResultError(){}
+    public ResultError() {
+    }
 
     public ResultError(int code, String message) {
         this.code = code;
@@ -29,7 +30,6 @@ public class ResultError {
     public void setMessage(String message) {
         this.message = message;
     }
-
 
 
 }
