@@ -1,10 +1,10 @@
 package com.sogou.bizdev.yiyu.controller;
 
 import com.sogou.bizdev.yiyu.exception.BizException;
+import com.sogou.bizdev.yiyu.exception.ErrorEnum;
 import com.sogou.bizdev.yiyu.paging.PageInfo;
 import com.sogou.bizdev.yiyu.paging.PageResult;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sogou.bizdev.yiyu.bean.Group;
 
 import com.sogou.bizdev.yiyu.service.GroupService;
-import com.sogou.bizdev.yiyu.controller.Result;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.sogou.bizdev.yiyu.controller.ErrorEnum;
-import sun.jvm.hotspot.debugger.cdbg.basic.ResolveListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.sogou.bizdev.yiyu.exception.Result;
 
 
 @Controller

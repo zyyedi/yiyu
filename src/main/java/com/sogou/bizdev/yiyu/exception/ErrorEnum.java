@@ -1,4 +1,4 @@
-package com.sogou.bizdev.yiyu.controller;
+package com.sogou.bizdev.yiyu.exception;
 
 /**
  * Created by shangyan200758 on 2016/3/4.
