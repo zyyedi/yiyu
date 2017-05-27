@@ -18,7 +18,7 @@ public interface GroupDao {
 
     public void updateGroup(Group group);
 
-    public void deleteGroup(Group group);
+    public void deleteGroup(Integer groupId);
 
     public void updateChannel(GroupChannel channel);
 

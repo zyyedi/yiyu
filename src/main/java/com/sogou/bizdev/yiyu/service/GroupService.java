@@ -12,9 +12,6 @@ import com.sogou.bizdev.yiyu.bean.Group;
 
 import com.sogou.bizdev.yiyu.dao.GroupDao;
 
-import java.nio.channels.Channel;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -23,8 +20,13 @@ public class GroupService {
     @Autowired
     private GroupDao groupDao;
 
-    public void insertGroup(Group group) {
+
+    public void insertGroup(Group group) throws BizException{
         groupDao.insertGroup(group);
+    }
+
+    public void deleteGroup(Integer groupId){
+        groupDao.deleteGroup(groupId);
     }
 
     public void updateGroup(Group group) throws BizException {

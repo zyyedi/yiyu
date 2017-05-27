@@ -24,7 +24,7 @@
         INSERT INTO `t_plan` (`plan_id`, `plan_name`, `budget`, `if_pause`, `create_date`,
         `change_date`)
         VALUES (#{planId}, #{planName}, #{budget}, 0, NOW(), NOW());
-        INSERT INTO `t_channel` (`id`, `group_id`, `channel_id`, `price`)
+        INSERT INTO `t_group_channel` (`id`, `group_id`, `channel_id`, `price`)
         VALUES
         <foreach collection="channels" index="index" item="item" separator=",">
             (#{id}, #{groupId}, #{channelId}, #{price})

@@ -33,6 +33,7 @@ public class UnitValidator {
         Integer groupId = group.getGroupId();
         Integer planId = group.getPlanId();
         Integer budget = group.getBudget();
+        List<GroupChannel> channels = group.getChannels();
 
         if (group == null) {
             ResultUtil.addEnumError(result, ErrorEnum.PARAM_ERROR);
@@ -57,7 +58,7 @@ public class UnitValidator {
             ResultUtil.addEnumError(result, ErrorEnum.BUDGET_ERROR);
         }
 
-        return result;
+        return validateChannel(result, channels);
     }
 
     public static Result validateChannel(List<GroupChannel> channels) {
@@ -66,6 +67,21 @@ public class UnitValidator {
             ResultUtil.addEnumError(result, ErrorEnum.CHANNEL_NOT_NULL);
             return result;
         }
+
+        return channelPartialMethod(result, channels);
+    }
+
+    public static Result validateChannel(Result result, List<GroupChannel> channels) {
+        if (channels == null) {
+            ResultUtil.addEnumError(result, ErrorEnum.CHANNEL_NOT_NULL);
+            return result;
+        }
+
+        return channelPartialMethod(result, channels);
+    }
+
+    public static Result channelPartialMethod(Result result, List<GroupChannel> channels) {
+
         for (GroupChannel channel : channels) {
             Integer id = channel.getId();
             Integer groupId = channel.getGroupId();
@@ -87,12 +103,13 @@ public class UnitValidator {
             } else if ((channelId < 1 || channelId > 6) && channelId != 100) {
                 ResultUtil.addEnumError(result, ErrorEnum.CHANNEL_ID_ERROR);
             }
-            if (price==null){
-                ResultUtil.addEnumError(result,ErrorEnum.CHANNEL_PRICE_NOT_NULL);
-            }else if (price<=0){
-                ResultUtil.addEnumError(result,ErrorEnum.CHANNEL_PRICE_ERROR);
+            if (price == null) {
+                ResultUtil.addEnumError(result, ErrorEnum.CHANNEL_PRICE_NOT_NULL);
+            } else if (price <= 0) {
+                ResultUtil.addEnumError(result, ErrorEnum.CHANNEL_PRICE_ERROR);
             }
         }
         return result;
     }
+
 }
