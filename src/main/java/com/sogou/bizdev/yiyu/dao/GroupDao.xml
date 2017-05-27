@@ -18,21 +18,43 @@
     </resultMap>
 
     <insert id="insertGroup" parameterType="com.sogou.bizdev.yiyu.bean.Group">
-        INSERT INTO `t_group` (`group_id`, `group_name`, `plan_id`, `if_pause`, `create_date`, `change_date`)
+        INSERT INTO `t_group` (`group_id`, `group_name`, `plan_id`, `if_pause`,
+        `create_date`, `change_date`)
         VALUES (#{groupId}, #{groupName}, #{planId}, 0, NOW(), NOW());
-        INSERT INTO `t_plan` (`plan_id`, `plan_name`, `budget`, `if_pause`, `create_date`, `change_date`)
+        INSERT INTO `t_plan` (`plan_id`, `plan_name`, `budget`, `if_pause`, `create_date`,
+        `change_date`)
         VALUES (#{planId}, #{planName}, #{budget}, 0, NOW(), NOW());
+        INSERT INTO `t_channel` (`id`, `group_id`, `channel_id`, `price`)
+        VALUES
+        <foreach collection="channels" index="index" item="item" separator=",">
+            (#{id}, #{groupId}, #{channelId}, #{price})
+        </foreach>
     </insert>
 
-    <update id="updateGroupAndPlan" parameterType="com.sogou.bizdev.yiyu.bean.Group">
+    <update id="updateGroup" parameterType="com.sogou.bizdev.yiyu.bean.Group">
         UPDATE `t_group`
-        SET group_name = #{groupName}, change_date = NOW()
+        SET group_name = #{groupName}, plan_id = #{planId}, change_date = NOW()
         WHERE group_id = #{groupId};
 
         UPDATE `t_plan`
-        SET budget = #{budget}, change_date = NOW()
+        SET budget = #{budget}, change_date = NOW(), plan_name = #{planName}
         WHERE plan_id = #{planId};
     </update>
+
+    <update id="updateChannel" parameterType="com.sogou.bizdev.yiyu.bean.GroupChannel">
+        UPDATE `t_group_channel`
+        SET group_id = #{groupId}, channel_id = #{channelId}, price = #{price}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteGroup" parameterType="com.sogou.bizdev.yiyu.bean.Group">
+        DELETE FROM `t_group` g
+        WHERE g.`group_id` = #{groupId};
+        DELETE FROM `t_group_channel` c
+        WHERE c.`group_id` = #{groupId};
+        DELETE FROM `t_plan` p
+        WHERE p.`plan_id` = #{planId};
+    </delete>
 
     <insert id="insertGroupChannel" parameterType="com.sogou.bizdev.yiyu.bean.Group">
         INSERT INTO `t_group_channel` (`id`, `group_id`, `channel_id`, `price`)

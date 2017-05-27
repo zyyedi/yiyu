@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sogou.bizdev.yiyu.bean.Group;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 @Repository
@@ -16,6 +17,10 @@ public interface GroupDao {
     public void insertGroup(Group group);
 
     public void updateGroup(Group group);
+
+    public void deleteGroup(Group group);
+
+    public void updateChannel(GroupChannel channel);
 
     public void insertGroupChannel(Group group);
 

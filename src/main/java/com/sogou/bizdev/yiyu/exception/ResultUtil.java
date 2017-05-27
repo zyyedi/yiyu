@@ -16,4 +16,11 @@ public class ResultUtil {
         error.setMessage(en.getMessage());
         result.addError(error);
     }
+
+    public static void addEnumError(Result result, ErrorEnum en) {
+        ResultError error = new ResultError();
+        error.setCode(en.getCode());
+        error.setMessage(en.getMessage());
+        result.addError(error);
+    }
 }

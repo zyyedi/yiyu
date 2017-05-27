@@ -19,7 +19,43 @@ public enum ErrorEnum {
 
     CRM_API_ERROR(105, "调用CRM接口异常"),
 
-    SYSTEM_ERROR(500, "系统异常");
+    SYSTEM_ERROR(500, "系统异常"),
+
+    GROUP_ID_NOT_NULL(10, "groupId 为空"),
+
+    GROUP_ID_ERROR(11, "groupId 参数错误"),
+
+    GROUP_NAME_NOT_NULL(12, "groupName 不为空"),
+
+    PLAN_ID_NOT_NULL(13, "planId 为空"),
+
+    PLAN_ID_ERROR(14, "planId 参数错误"),
+
+    PLAN_NAME_NOT_NULL(15, "planName 不为空"),
+
+    BUDGET_NOT_NULL(16, "budget 为空"),
+
+    BUDGET_ERROR(17, "budget 参数错误"),
+
+    CHANNEL_NOT_NULL(18, "groupChannel 为空"),
+
+    CHANNEL_ID_NOT_NULL(19, "channelId 为空"),
+
+    CHANNEL_ID_ERROR(20, "channelId 参数错误"),
+
+    CHANNEL_PRICE_NOT_NULL(21, "price 为空"),
+
+    CHANNEL_PRICE_ERROR(22, "price 参数错误"),
+
+    CHANNEL_GROUP_ID_NOT_NULL(23, " channel 中 groupId 为空"),
+
+    CHANNEL_GROUP_ID_ERROR(24, "channel 中 groupId 参数错误"),
+
+    ID_IN_CHANNEL_NOT_NULL(25, "channelId 为空"),
+
+    ID_IN_CHANNEL_ID_ERROR(26, "channelId 参数错误");
+
+
 
     private int code;
     private String message;

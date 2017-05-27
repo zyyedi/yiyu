@@ -12,6 +12,8 @@ import com.sogou.bizdev.yiyu.bean.Group;
 
 import com.sogou.bizdev.yiyu.dao.GroupDao;
 
+import java.nio.channels.Channel;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,8 +27,14 @@ public class GroupService {
         groupDao.insertGroup(group);
     }
 
-    public void updateGroup(Group group) {
+    public void updateGroup(Group group) throws BizException {
+        List<GroupChannel> channels = group.getChannels();
         groupDao.updateGroup(group);
+        if (channels != null) {
+            for (GroupChannel groupChannel : channels) {
+                groupDao.updateChannel(groupChannel);
+            }
+        }
     }
 
     public void insertGroupChannel(Group group) {
